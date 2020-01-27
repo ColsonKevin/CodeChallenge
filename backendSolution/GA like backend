@@ -1,0 +1,34 @@
+In order to design a GA(Google Analytics) like backend, we need to understand what the service does:
+
+Google Analytics is a service monitoring the audience of websites or applications. Statistics, user analysis and
+Machine Learning are parts of the services Google Analytics is able to provide.
+
+This definition gives us a good part of the necessary information on how the data flow should be designed in order to
+provide a service alike GA.
+
+1) We need a reliable way to gather the user information like preferences or visit frequency. We also need to be able
+   to scale on the potential huge amount of users AND clients using our service.
+
+2) We need to redirect the user's requests to the service they want to reach after going through our process and
+   redirect the answer back. We also need a service discovery for new clients that would potentially subscribe to our
+   service.
+
+3) We need to send the gathered data through our processes and micro-services(micro-services would allow our backend
+   to offer personalized services easier while being easier to maintain and reusable). Therefore, we need a queue
+   system.
+
+4) We then need to process the data through our micro-services and queues while directing them to the right storage
+   solution.
+
+5) We need to find a reliable storage solution to make the processed data accessible to our clients on demand.
+
+6) We need to load balance and forward our client's request to micro-services that will fetch the required data and
+   present them. The solution might be the same as the one on the user side since we can assume that the requirements
+   are the same.
+
+
+Therefore our architecture will be composed as 6 different steps/services that can handle huge load of data in a minimum
+response time and a maximum reliability while trying to reduce the costs as much as possible. I would suggest to use
+the same provider as much as possible since we can have offer on the amount of services we subscribe to.
+
+Step 1:
