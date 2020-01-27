@@ -9,20 +9,16 @@ provide a service alike GA.
 1) We need a reliable way to gather the user information like preferences or visit frequency. We also need to be able
    to scale on the potential huge amount of users AND clients using our service.
 
-2) We need to redirect the user's requests to the service they want to reach after going through our process and
-   redirect the answer back. We also need a service discovery for new clients that would potentially subscribe to our
-   service.
+2) We need to redirect the user's data in order for those to get through our processes and we also need a service
+   discovery for new services that we would potentially develop and provide.
 
 3) We need to send the gathered data through our processes and micro-services(micro-services would allow our backend
-   to offer personalized services easier while being easier to maintain and reusable). Therefore, we need a queue
+   to offer personalized services easier while being easier to maintain and reusable). Therefore, we need a data stream
    system.
 
-4) We then need to process the data through our micro-services and queues while directing them to the right storage
-   solution.
+4) We need to find a reliable storage solution to make the processed data accessible to our clients on demand.
 
-5) We need to find a reliable storage solution to make the processed data accessible to our clients on demand.
-
-6) We need to load balance and forward our client's request to micro-services that will fetch the required data and
+5) We need to load balance and forward our client's request to micro-services that will fetch the required data and
    present them. The solution might be the same as the one on the user side since we can assume that the requirements
    are the same.
 
@@ -32,3 +28,35 @@ response time and a maximum reliability while trying to reduce the costs as much
 the same provider as much as possible since we can have offer on the amount of services we subscribe to.
 
 Step 1:
+As for collecting user preferences, there are no specific services dedicated to that. It heavily depends on what data
+you need and want to collect as well as policies. To be able to collect the data you need, we can provide scripts to
+clients websites or apps to embed those in their code. We also can collect data through cookies.
+
+Depending on policies and rules within companies, some load balancing services might be more suitable than others.
+For example, we can use AWS Elastic Load Balancer if the instances we are working on are AWS provided. It's easier and
+embedded into the AWS instances use. Without such constraints or need, other Load Balancer services might be suitable
+such as HA-Proxy. Which is a service used by twitter or instagram.
+
+Step 2:
+Amazon provides a service called Amazon API Gateway allowing to consume services from multiple Amazon hosts. This
+service is practical and easy to use in an Amazon environment. If such constraints don't apply, other API Gateway
+providers might be suitable. Azure furnishes such service but also Apigee or Kong. We need to be aware that we would
+like to automate our service discovery so we need to be aware that the API Gateway we will be picking is able to
+auto-discover services registered in a registry server such as Eureka or Docker.
+
+Step 3:
+Micro-services have to be developed by ourselves to process the data but some frameworks might help ditributing the said
+data through the micro-services. Again, in an Amazon environment, it could be practical and easier to use an Amazon
+service such as Amazon Kinesis. Otherwise, Apache Spark and its extensions are really good candidate.
+
+Step 4:
+Once again, amazon provides a set of services making storage easier and faster. Those services are Amazon S3, Amazon
+Glacier, Amazon Glue, Amazon EMR and even more depending on the level of process we want on the data. Outside an Amazon
+environment, Apache Cassandra has everything needed to perform particularly well with Apache Spark and Apache Ignite.
+Microsoft Azure Data storage might also be a solution to consider.
+
+Step 5:
+As said previously, the solution here is not different from the first step as the requirements are the same. Therefore,
+services suggested in solution 1 can be applied here aswell.
+
+
