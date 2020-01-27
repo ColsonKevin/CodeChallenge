@@ -13,4 +13,6 @@ Tests are run with JUnit 5.
 
 ## Google analytics like backend
 
-The answer can be found under the **backendSolution/** directory.
+The answer can be found under the **backendSolution/** directory descibing the services used during the different steps of the data processing.
+
+A PDF diagram is also provided to have a cleared and concise vision of the provided solution.
